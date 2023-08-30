@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 
 import { MyContext } from '../Context'
 import Item from './Item';
@@ -20,6 +20,15 @@ function List() {
     fetchFn("before", "")
   }
 
+  const homeFn = (e) => {
+    fetchFn("get", "");
+  }
+
+  useEffect(()=> {
+    homeFn();
+    console.log("home is here")
+  }, [])
+
 
   console.log(data[0]);
   if(!data.length) {
@@ -27,14 +36,14 @@ function List() {
   }
 
   return (
-    <>
+    <div className='listDiv'>
       <button name="before" onClick={(e)=>{before(e)}}>이전</button>
       <button name="next" onClick={(e)=>{next(e)}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
         <input ref={elInput} name="search"></input>
         <button>찾기</button>
-        <ul>
+        <ul className='listUl'>
             {
                 data.map(item => (
                     <Item key={item.id} item={item}></Item>
@@ -42,7 +51,7 @@ function List() {
             }
         </ul>
       </form>
-    </>
+    </div>
   )
 }
 

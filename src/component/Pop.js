@@ -23,6 +23,8 @@ function Pop() {
     <ul>
         <p>{detail[0].original_title}</p>
         <img src={`https://image.tmdb.org/t/p/w500/${detail[0].poster_path}`}></img>
+        <p>개봉일 {detail[0].release_date}</p>
+        <p>{detail[0].overview}</p>
     </ul>
   )
 }
