@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Context, MyContext } from './Context';
+import { useContext } from 'react';
+import {HashRouter, Routes, Route, Link} from "react-router-dom";
+import List from './component/List';
+import Pop from './component/Pop';
+import Item from './component/Item';
+
 
 function App() {
+  // const {data, fetchFn} = useContext(MyContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <HashRouter>
+        <header>
+          <nav>
+            <Link to="/">홈</Link>
+          </nav>
+        </header>
+        <main>
+        <Context>
+          <Routes>
+            <Route path='/' element={<List/>}></Route>
+            <Route path='/pop/:code' element={<Pop/>}></Route>
+          </Routes>
+          </Context>
+        </main>
+      </HashRouter>
+
+    
   );
 }
 
