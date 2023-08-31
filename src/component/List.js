@@ -37,6 +37,7 @@ function List() {
 
   return (
     <div className='listDiv'>
+      <button></button>
       <button name="before" onClick={(e)=>{before(e)}}>이전</button>
       <button name="next" onClick={(e)=>{next(e)}}>다음</button>
       <p>현재 페이지{num}</p>

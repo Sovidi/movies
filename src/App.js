@@ -8,8 +8,7 @@ import Item from './component/Item';
 
 
 function App() {
-  
-  // const {fetchFn} = useContext(MyContext);
+    // const {fetchFn} = useContext(MyContext);
 
   return (
     <Context>
