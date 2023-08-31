@@ -6,8 +6,6 @@ const MyContext = createContext();
 
 const insert = (state, action) => {
     switch(action.type) {
-        case "search" : return action.d;
-        case "more" : return action.d;
         default : return action.d;
     }
 }
@@ -40,6 +38,30 @@ function Context({children}) {
             setNum(num-1);
             res = await instance.get(`/movie/popular?page=${num}`);
             break;
+
+
+
+
+            case "tvGet" : 
+            res = await instance.get(`/tv/popular`);
+            break;
+
+            case "tvSearch" : 
+            res = await instance.get(`/search/tv?query=${data}`);
+            break;
+
+            case "tvNext" : 
+            setNum(num+1);
+            res = await instance.get(`/tv/popular?page=${num}`);
+            break;
+
+            case "tvBefore" : 
+            setNum(num-1);
+            res = await instance.get(`/tv/popular?page=${num}`);
+            break;
+
+
+
 
             default : 
             res = await instance.get("/movie/popular");
