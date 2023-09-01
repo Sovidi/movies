@@ -6,14 +6,16 @@ function Item({item}) {
   const {data, fetchFn} = useContext(MyContext);
   const navigate = useNavigate();
 
+  console.log(item)
+
   return (
     <li>
-      <code>{item.original_title}</code>
-      <code>{item.original_name}</code>
+      <code>{item.original_title}{item.original_name}</code>
       <a onClick={()=>{navigate("/pop", {state:{item}})}}></a>
       <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
       <Link to={`/pop/${item.id}`}>쟈세희 뵤귀</Link>
     </li>
+    
   )
 }
 

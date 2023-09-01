@@ -21,9 +21,8 @@ function Pop() {
 
   return (
     <ul>
-        <p>{detail[0].original_title}</p>
+        <p>{detail[0].original_title}{detail[0].original_name}</p>
         <img src={`https://image.tmdb.org/t/p/w500/${detail[0].poster_path}`}></img>
-        <p>개봉일 {detail[0].release_date}{detail[0].first_air_date}</p>
         <p>{detail[0].overview}</p>
     </ul>
   )

@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 
 import { MyContext } from '../Context'
 import Item from './Item';
 
 function List() {
-  const {data, fetchFn, num} = useContext(MyContext);
+  const {data, fetchFn, num, setNum, num2, setNum2, cat, setCat} = useContext(MyContext);
   const elInput = useRef();
+
 
   const searching = (e) => {
     e.preventDefault();
@@ -13,44 +14,35 @@ function List() {
     console.log("submit!")
   }
 
-  const next = (e) => {
-    fetchFn("next", "")
-  }  
-  const before = (e) => {
-    fetchFn("before", "")
-  }
-  const homeFn = (e) => {
-    fetchFn("get", "");
-  }
-
-  useEffect(()=> {
-    homeFn();
-    console.log("home is here")
-  }, [])
 
 
-  console.log(data[0]);
+
+
   if(!data.length) {
     return<>....</>
   }
 
   return (
-    <div className='listDiv'>
-      <button name="before" onClick={(e)=>{before(e)}}>이전</button>
-      <button name="next" onClick={(e)=>{next(e)}}>다음</button>
+    <>
+      <button name="newMovie" onClick={(e)=>{fetchFn("get", ""); setCat("popular"); setNum(1)}}>최신영화</button>
+      <button name="upcoming" onClick={(e)=>{fetchFn("upcoming", ""); setCat("upcoming"); setNum(1)}}>곧 개봉</button>
+      <button name="topRated" onClick={(e)=>{fetchFn("topRated", ""); setCat("top_rated"); setNum(1)}}>인기영화</button>
+      <br/><br/>
+      <button className='mbBttn' name="before" onClick={(e)=>{fetchFn("before", ""); if(num <= 2) {e.target.style = "display:none"} else {e.target.style = "display:block"};}}>이전</button>
+      <button name="next" onClick={(e)=>{fetchFn("next", "")}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
         <input ref={elInput} name="search"></input>
         <button>찾기</button>
-        <ul className='listUl'>
+        <ul>
             {
                 data.map(item => (
-                    <Item key={item.id} item={item}></Item>
+                  <Item item={item}></Item>
                 ))
             }
         </ul>
       </form>
-    </div>
+    </>
   )
 }
 
