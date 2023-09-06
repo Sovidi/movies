@@ -6,120 +6,65 @@ const MyContext = createContext();
 
 const insert = (state, action) => {
     switch(action.type) {
-        case "search" : return action.d.data.results;
-        case "upcoming" : return action.d[2].data.results;
-        case "topRated" : return action.d[0].data.results;
-
-        case "tvSearch" : return action.d.data.results;
-        case "tvGet" : return action.d[1].data.results;
-        case "tvTopRated" : return action.d[0].data.results;
-
-        default : return action.d.data.results;
+        case "search" : return action.d;
+        case "get" : return action.d;
+        case "more" : return [...state, ...action.d];
+        default : return action.d;
     }
 }
 
 function Context({children}) {
-
     const [data, dispatch] = useReducer(insert, []);
-    const [num, setNum] = useState(1);
-    const [num2, setNum2] = useState(1);
+    const [media, setMedia] = useState("movie");
     const [cat, setCat] = useState("popular");
-    const mbBttn = document.querySelector(".mbBttn");
-    const tbBttn = document.querySelector(".tbBttn");
-
+    let [num, setNum] = useState();
+    const [sec, setSec] = useState([]);
 
     const instance = axios.create({
         baseURL: "https://api.themoviedb.org/3",
         params: {api_key: "f89a6c1f22aca3858a4ae7aef10de967"}
     });
 
+    const forMain = async () => {
+        let res; 
+        const mainMvList = [
+            await instance.get(`/movie/popular`),
+            await instance.get(`/movie/top_rated`),
+            await instance.get(`/tv/popular`),
+            await instance.get(`/tv/top_rated`)
+        ];
+        setSec(mainMvList);
+    };
 
 
     const fetchFn = async (type, data) => {
-        console.log(cat)
-
-
-        let movies = [
-            await instance.get(`/movie/top_rated?page=${num}`),
-            await instance.get(`/movie/popular?page=${num}`),
-            await instance.get(`/movie/upcoming?page=${num}`),
-        ]
-
-        let tvs = [
-            await instance.get(`/tv/top_rated?page=${num2}`),
-            await instance.get(`/tv/popular?page=${num2}`),
-            // await instance.get("/tv/upcoming"),
-        ]
-
-
-        // let moviesPr = await Promise.all([movies[0], movies[1], movies[2]])
-
         let res;
         switch(type) {
             case "search" : 
-            res = await instance.get(`/search/movie?query=${data}`);
+            res = await instance.get(`/search/${media}?query=${data}`);
             break;
 
-            case "next" : 
-            setNum(num+1);
-            res = await instance.get(`/movie/${cat}?page=${num}`);
+            case "get" :
+            res = await instance.get(`/${media}/${cat}?page=${data}`);
             break;
 
-            case "before" : 
-            setNum(num-1);
-            res = await instance.get(`/movie/${cat}?page=${num}`);
+            case "more" :
+            res = await instance.get(`/${media}/${cat}?page=${data}`);
             break;
-
-            case "topRated" : 
-            res = await Promise.all([movies[0], movies[1], movies[2]])
-            break;
-
-            case "upcoming" : 
-            res = await Promise.all([movies[0], movies[1], movies[2]])
-            break;
-
-
-
-            case "tvSearch" : 
-            res = await instance.get(`/search/tv?query=${data}`);
-            break;
-
-            case "tvNext" : 
-            setNum2(num2+1);
-            res = await instance.get(`/tv/${cat}?page=${num2}`);
-            break;
-
-            case "tvBefore" : 
-            setNum2(num2-1);
-            res = await instance.get(`/tv/${cat}?page=${num2}`);
-            break;
-
-            case "tvTopRated" : 
-            res = await Promise.all([tvs[0], tvs[1], tvs[2]])
-            break;
-
-            case "tvUpcoming" : 
-            res = await Promise.all([tvs[0], tvs[1], tvs[2]])
-            break;
-
-            case "tvGet" : 
-            res = await Promise.all([tvs[0], tvs[1], tvs[2]])
-            break;
-
-
-
-            default : 
-            res = await instance.get(`/movie/popular?page=${num}`);
+    
+            default :
+            res = await instance.get(`/${media}/${cat}?page=${data}`);
             }
-        dispatch({type, d: res});
-    }
+        dispatch({type, d: res.data.results});
+    };
 
     useEffect(()=> {
-        fetchFn()
+        forMain();
+        fetchFn();
     }, [])
 
     return (
-        <MyContext.Provider value={{data, fetchFn, num, setNum, num2, setNum2, cat, setCat}}>
+        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec}}>
             {children}
         </MyContext.Provider>
     )

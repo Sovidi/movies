@@ -9,7 +9,7 @@ function Pop() {
     const {code} = useParams();
 
     if (code == undefined) {
-      navigate("/")
+      navigate("/");
     }
 
     // const location = useLocation();

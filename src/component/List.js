@@ -1,35 +1,51 @@
-import React, { useContext, useRef } from 'react'
-
+import React, { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 
 function List() {
-  const {data, fetchFn, num, setNum, num2, setNum2, cat, setCat} = useContext(MyContext);
+  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia} = useContext(MyContext);
   const elInput = useRef();
-
+  const bfBttn = useRef();
 
   const searching = (e) => {
     e.preventDefault();
     fetchFn("search", elInput.current.value);
-    console.log("submit!")
-  }
+  };
 
+  const pagingCat = (type) => {
+    setCat(type);
+    setNum(1);
+    fetchFn("get", num);
+    bfBttn.current.style = "display:none"
+  };
 
+  const pagingBefore = (e) => {
+    setNum(--num);
+    fetchFn("get", num);
+    if (num <= 2) {bfBttn.current.style = "display:none"} else {bfBttn.current.style = "display:block"};
+  };
 
+  const pagingNext = () => {
+    setNum(++num);
+    fetchFn("get", num);
+    bfBttn.current.style = "display:block"
+  };
 
-
-  if(!data.length) {
-    return<>....</>
-  }
+  useEffect(()=>{
+    setMedia("movie");
+    setCat("popular");
+    setNum(1);
+    fetchFn("get", "");
+  }, []);
 
   return (
     <>
-      <button name="newMovie" onClick={(e)=>{fetchFn("get", ""); setCat("popular"); setNum(1)}}>최신영화</button>
-      <button name="upcoming" onClick={(e)=>{fetchFn("upcoming", ""); setCat("upcoming"); setNum(1)}}>곧 개봉</button>
-      <button name="topRated" onClick={(e)=>{fetchFn("topRated", ""); setCat("top_rated"); setNum(1)}}>인기영화</button>
+      <button name="popular" onClick={(e)=>{pagingCat("popular")}}>최신영화</button>
+      <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기영화</button>
+      <button name="upcoming" onClick={(e)=>{pagingCat("upcoming")}}>곧 개봉할 영화</button>
       <br/><br/>
-      <button className='mbBttn' name="before" onClick={(e)=>{fetchFn("before", ""); if(num <= 2) {e.target.style = "display:none"} else {e.target.style = "display:block"};}}>이전</button>
-      <button name="next" onClick={(e)=>{fetchFn("next", "")}}>다음</button>
+      <button style={{display:"none"}} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
+      <button name="next" onClick={()=>{pagingNext()}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
         <input ref={elInput} name="search"></input>
@@ -37,13 +53,14 @@ function List() {
         <ul>
             {
                 data.map(item => (
-                  <Item item={item}></Item>
+                  <Item key={item.id} item={item}></Item>
                 ))
             }
         </ul>
       </form>
     </>
   )
+
 }
 
 export default List
