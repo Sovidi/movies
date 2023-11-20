@@ -1,7 +1,8 @@
 
 1|2|3
 ---|---|---
-sef|3dsfs|![Uploading chrome-capture-2023-11-20.gif…]()
+sef|3dsfs|![Uploading F97UwlXaYAACKKb.jpeg…]()
+
 
 
 
