@@ -16,35 +16,32 @@ function List() {
     setCat(type);
     setNum(1);
     fetchFn("get", num);
-    bfBttn.current.style = "display:none"
   };
 
   const pagingBefore = (e) => {
     setNum(--num);
     fetchFn("get", num);
-    if (num <= 2) {bfBttn.current.style = "display:none"} else {bfBttn.current.style = "display:block"};
   };
 
   const pagingNext = () => {
     setNum(++num);
     fetchFn("get", num);
-    bfBttn.current.style = "display:block"
   };
 
   useEffect(()=>{
     setMedia("movie");
     setCat("popular");
     setNum(1);
-    fetchFn("get", "");
+    fetchFn("get", num);
   }, []);
 
   return (
-    <>
+    <div className='movieWrite'>
       <button name="popular" onClick={(e)=>{pagingCat("popular")}}>최신영화</button>
       <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기영화</button>
       <button name="upcoming" onClick={(e)=>{pagingCat("upcoming")}}>곧 개봉할 영화</button>
       <br/><br/>
-      <button style={{display:"none"}} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
+      <button className={`bfBttn ${num <= 1 ? "active" : ""}`} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
       <button name="next" onClick={()=>{pagingNext()}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
@@ -58,7 +55,7 @@ function List() {
             }
         </ul>
       </form>
-    </>
+    </div>
   )
 
 }

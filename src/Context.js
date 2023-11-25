@@ -45,7 +45,9 @@ function Context({children}) {
             break;
 
             case "get" :
-            res = await instance.get(`/${media}/${cat}?page=${data}`);
+            res = await instance.get(`/${media}/${cat}?page=${num}`);
+            res = res.data.results;
+            console.log(media, cat, num);
             break;
 
             case "more" :
@@ -55,7 +57,7 @@ function Context({children}) {
             default :
             res = await instance.get(`/${media}/${cat}?page=${data}`);
             }
-        dispatch({type, d: res.data.results});
+        dispatch({type, d: res});
     };
 
     useEffect(()=> {

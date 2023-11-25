@@ -1,3 +1,5 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ul{
     display: flex;
     flex-wrap: wrap;
@@ -12,3 +14,66 @@ ul{
     }
 }
 
+=======
+=======
+>>>>>>> Stashed changes
+html {
+	body {
+		nav {
+			text-align: center;
+		}
+		main {
+			.movieWrite{
+				text-align: center;
+				button {
+					font-size: 20px;
+					margin: 0 auto;
+				}
+				.bfBttn {
+					&.active {
+						display: none;
+						color: green($color: #000000);
+					}
+				}	
+			}
+			.TvWrite {
+				text-align: center;
+				button {
+					font-size: 20px;
+					margin: 0 auto;
+				}
+				.bfBttn {
+					&.active {
+						display: none;
+						color: green($color: #000000);
+					}
+				}	
+			}
+		}
+	}
+}
+
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 100px;
+
+	a {
+		display: flex;
+		flex-direction: column;
+		width: 300px;
+		height: 500px;
+	}
+
+	li {
+		display: flex;
+		flex-direction: column;
+		width: 300px;
+		height: 500px;
+	}
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
+}
+>>>>>>> Stashed changes

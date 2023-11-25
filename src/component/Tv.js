@@ -1,50 +1,52 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
+import { async } from 'q';
 
 function Tv() {
   let {data, fetchFn, num, setNum, cat, setCat, media, setMedia} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
 
-  const searching = (e) => {
+  const searching = async (e) => {
     e.preventDefault();
-    fetchFn("search", elInput.current.value);
+    await fetchFn("search", elInput.current.value);
   };
 
-  const pagingCat = (type) => {
+  const contentsLoading = async () => {
+    await setMedia("tv");
+    await setCat("popular");
+    await setNum(1);
+    await fetchFn("get", "");
+  }
+
+  const pagingCat = async (type) => {
     setNum(1);
     setCat(type);
-    fetchFn("get", num);
-    bfBttn.current.style = "display:none"
+    await fetchFn("get", "");
   };
 
-  const pagingBefore = (e) => {
+  const pagingBefore = async (e) => {
     setNum(--num);
-    fetchFn("get", num);
-    if (num <= 2) {bfBttn.current.style = "display:none"} else {bfBttn.current.style = "display:block"};
+    await fetchFn("get", "");
   };
 
-  const pagingNext = () => {
+  const pagingNext = async () => {
     setNum(++num);
-    fetchFn("get", num);
-    bfBttn.current.style = "display:block"
+    await fetchFn("get", "");
   };
-
 
   useEffect(()=>{
-    setMedia("tv");
-    setCat("popular");
-    setNum(1);
-    fetchFn("get", "");
+    contentsLoading();
   }, [])
 
+
   return (
-    <>
-      <button name="popular" onClick={(e)=>{pagingCat("popular")}}>최신</button>
-      <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기</button>
+    <div className='TvWrite'>
+      <button name="popular" onClick={(e)=>{pagingCat("popular")}}>인기</button>
+      <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>최신</button>
       <br/><br/>
-      <button style={{display:"none"}} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
+      <button className={`bfBttn ${num <= 1 ? "active" : ""}`} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
       <button name="next" onClick={()=>{pagingNext()}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
