@@ -15,24 +15,24 @@ function List() {
   const pagingCat = (type) => {
     setCat(type);
     setNum(1);
-    fetchFn("get", num);
+    fetchFn("get", "");
   };
 
   const pagingBefore = (e) => {
     setNum(--num);
-    fetchFn("get", num);
+    fetchFn("get", "");
   };
 
   const pagingNext = () => {
     setNum(++num);
-    fetchFn("get", num);
+    fetchFn("get", "");
   };
 
   useEffect(()=>{
     setMedia("movie");
     setCat("popular");
     setNum(1);
-    fetchFn("get", num);
+    fetchFn("get", "");
   }, []);
 
   return (

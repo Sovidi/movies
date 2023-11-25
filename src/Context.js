@@ -17,7 +17,7 @@ function Context({children}) {
     const [data, dispatch] = useReducer(insert, []);
     const [media, setMedia] = useState("movie");
     const [cat, setCat] = useState("popular");
-    let [num, setNum] = useState();
+    let [num, setNum] = useState(1);
     const [sec, setSec] = useState([]);
 
     const instance = axios.create({
@@ -42,6 +42,7 @@ function Context({children}) {
         switch(type) {
             case "search" : 
             res = await instance.get(`/search/${media}?query=${data}`);
+            res = res.data.results;
             break;
 
             case "get" :
@@ -52,10 +53,12 @@ function Context({children}) {
 
             case "more" :
             res = await instance.get(`/${media}/${cat}?page=${data}`);
+            res = res.data.results;
             break;
     
             default :
-            res = await instance.get(`/${media}/${cat}?page=${data}`);
+            res = await instance.get(`/${media}/${cat}?page=${num}`);
+            res = res.data.results;
             }
         dispatch({type, d: res});
     };
