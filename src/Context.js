@@ -26,7 +26,7 @@ function Context({children}) {
     });
 
     const forMain = async () => {
-        let res; 
+        let res;
         const mainMvList = [
             await instance.get(`/movie/popular`),
             await instance.get(`/movie/top_rated`),
