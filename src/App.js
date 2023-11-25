@@ -10,7 +10,7 @@ import Main from './component/Main';
 function App() {
   return (
     <Context>
-      <HashRouter>
+      <HashRouter basename='movies'>
         <nav>
           <Link to="/">홈</Link>
           <Link to="/movie">Movie</Link>
