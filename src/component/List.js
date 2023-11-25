@@ -12,11 +12,6 @@ function List() {
     fetchFn("search", elInput.current.value);
   };
 
-  const searching2 = (e) => {
-    e.preventDefault();
-    fetchFn("search", elInput.current.value);
-  };
-
 
   const pagingCat = (type) => {
     setCat(type);
