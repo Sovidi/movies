@@ -3,27 +3,20 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MyContext } from '../Context';
 
 function Pop() {
-    const {data, fetchFn} = useContext(MyContext);
-    const navigate = useNavigate();
+    const location = useLocation();
+    let item = location.state.item;
 
-    const {code} = useParams();
-
-    if (code == undefined) {
-      navigate("/");
-    }
+    console.log(item);
 
     // const location = useLocation();
     // const items = location.state.item;
     // console.log(items.id)
 
-    let detail = data.filter(item => item.id == code);
-
-
   return (
     <ul>
-        <p>{detail[0].original_title}{detail[0].original_name}</p>
-        <img src={`https://image.tmdb.org/t/p/w500/${detail[0].poster_path}`}></img>
-        <p>{detail[0].overview}</p>
+        <p>{item.original_title}{item.original_name}</p>
+        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+        <p>{item.overview}</p>
     </ul>
   )
 }

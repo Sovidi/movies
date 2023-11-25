@@ -40,7 +40,7 @@ function Tv() {
   }, [])
 
   return (
-    <>
+    <div className='TvWrite'>
       <button name="popular" onClick={(e)=>{pagingCat("popular")}}>최신</button>
       <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기</button>
       <br/><br/>
@@ -58,7 +58,7 @@ function Tv() {
             }
         </ul>
       </form>
-    </>
+    </div>
   )
 }
 
