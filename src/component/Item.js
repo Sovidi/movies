@@ -4,14 +4,14 @@ import { MyContext } from '../Context';
 
 function Item({item}) {
   const {data, fetchFn} = useContext(MyContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <li>
-      {/* <Link to={`/pop/${item.id}`}>      </Link> */}
-        <code>{item.original_title}{item.original_name}</code>
-        <a onClick={()=>{navigate(`/pop/${item.id}`, {state:{item}})}}>자세히 보기</a>
-        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+      <code>{item.original_title}{item.original_name}</code>
+      {/* <a onClick={()=>{navigate("/pop", {state:{item}})}}></a> */}
+      <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+      <Link to={`/pop/${item.id}`}>자세히 보기</Link>
     </li>
     
   )

@@ -1,35 +1,14 @@
-nav{
-    text-align: center;
-}
-
-main{
-    text-align: center;
-}
-button{
-    font-size: 20px;
-    margin: 0 auto;
-}
-
-
-.TvWrite{
-}
-
 ul{
     display: flex;
     flex-wrap: wrap;
     gap: 100px;
-    a{
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        height: 500px;
-    }
-    li{
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        height: 500px;
-    }
 
+    li{
+
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 500px;
+    }
 }
 

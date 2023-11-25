@@ -44,7 +44,7 @@ function List() {
       <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기영화</button>
       <button name="upcoming" onClick={(e)=>{pagingCat("upcoming")}}>곧 개봉할 영화</button>
       <br/><br/>
-      <button ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
+      <button style={{display:"none"}} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
       <button name="next" onClick={()=>{pagingNext()}}>다음</button>
       <p>현재 페이지{num}</p>
       <form onSubmit={(e)=>{searching(e)}}>
