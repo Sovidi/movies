@@ -66,7 +66,11 @@ function Context({children}) {
     useEffect(()=> {
         forMain();
         fetchFn();
-    }, [])
+    }, []);
+
+    useEffect(()=>{
+        fetchFn();
+    }, [num, media, cat]);
 
     return (
         <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec}}>
