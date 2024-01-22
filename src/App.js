@@ -5,9 +5,11 @@ import List from './component/List';
 import Pop from './component/Pop';
 import Tv from './component/Tv';
 import Main from './component/Main';
+import { useState } from 'react';
 
 
 function App() {
+  const [cl, setCl] = useState("");
   return (
     <Context>
       <HashRouter>
@@ -21,7 +23,7 @@ function App() {
             <Route path='/' element={<Main/>}></Route>
             <Route path='/movie' element={<List/>}></Route>
             <Route path='/tv' element={<Tv/>}></Route>
-            <Route path='/pop/:code' element={<Pop/>}></Route>
+            <Route path='/pop' element={<Pop/>}></Route>
           </Routes>
         </main>
       </HashRouter>
