@@ -17,23 +17,19 @@ function Tv() {
     await setMedia("tv");
     await setCat("popular");
     await setNum(1);
-    await fetchFn("get", "");
   }
 
   const pagingCat = async (type) => {
     setNum(1);
     setCat(type);
-    await fetchFn("get", "");
   };
 
   const pagingBefore = async (e) => {
     setNum(--num);
-    await fetchFn("get", "");
   };
 
   const pagingNext = async () => {
     setNum(++num);
-    await fetchFn("get", "");
   };
 
   useEffect(()=>{
