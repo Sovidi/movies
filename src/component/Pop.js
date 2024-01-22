@@ -3,6 +3,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MyContext } from '../Context';
 import styles from "../css/contents.module.scss"
 import axios from 'axios';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
 
 function Pop() {
   const { data, fetchFn, mId, setMId, media } = useContext(MyContext);
@@ -34,34 +37,41 @@ function Pop() {
     console.log(dt);
   }, [dt]);
 
-  if (!dt[0] && !dt[1]) return <>로딩중</>
+  if (!dt[0] || !dt[1]) return <>로딩중</>
   // else if(!dt[0].data.genres) return <>로딩중</>
   return (
-    <div className={styles.popBox}>
-      <p>{dt[0].data.original_title ? dt[0].data.original_title : dt[0].data.original_name}</p>
-      <figure>
-        <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
-      </figure>
-      <div>
-        <p>장르</p>
-        {
-          dt[0].data.genres.map(item => (
-            <p>{item.name}</p>
-          ))
-        }
+    <section className={styles.popBox}>
+      <div className={styles.titleBox}>
+        <figure>
+          <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
+        </figure>
+        <div className={styles.infoBox}>
+          <p>{dt[0].data.original_title ? dt[0].data.original_title : dt[0].data.original_name}</p>
+          <div>
+            <p>장르</p>
+            {
+              dt[0].data.genres.map(item => (
+                <p>{item.name}</p>
+              ))
+            }
+          </div>
+          <div>
+            <p>설명</p>
+            <p>{dt[0].data.overview}</p>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>설명</p>
-        <p>{dt[0].data.overview}</p>
-      </div>
-      <figure>
+      <div className={styles.castBox}>
         {
           dt[1].data.cast.map(item => (
-            <img src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} />
+            <figure className={styles.castPic}>
+              <figcaption>{item.name}</figcaption>
+              <img src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} />
+            </figure>
           ))
         }
-      </figure>
-    </div>
+      </div>
+    </section>
   )
 }
 

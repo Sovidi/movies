@@ -14,7 +14,7 @@ function Main() {
 	if (!sec[0] || !sec[1] || !sec[2] || !sec[3]) return <>로딩중</>;
 	// if(sec[0] == undefined || sec[1] == undefined || sec[2] == undefined || sec[3] == undefined) return <>로딩중</>;
 	return (
-		<>
+		<section>
 			<Swiper
 				spaceBetween={30}
 				slidesPerView={3}
@@ -95,7 +95,7 @@ function Main() {
 					))
 				}
 			</Swiper>
-		</>
+		</section>
 	)
 }
 
