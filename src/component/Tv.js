@@ -21,7 +21,6 @@ function Tv() {
   const contentsLoading = async () => {
     await setMedia("tv");
     await setCat("popular");
-    setCatBttn("popularT");
     await setNum(1);
   }
 
@@ -46,9 +45,9 @@ function Tv() {
   return (
     <div className={styles.contents}>
       <div className={styles.contentsBox}>
-        <button name="popular" className={catBttn == "popularT" ? styles.active : ""} onClick={(e) => { pagingCat("popular"); setCatBttn("popularT"); }}>인기</button>
-        <button name="topRated" className={catBttn == "top_ratedT" ? styles.active : ""} onClick={(e) => { pagingCat("top_rated"); setCatBttn("top_ratedT"); }}>최신</button>
-        <button name="onTheAir" className={catBttn == "on_the_air" ? styles.active : ""} onClick={(e) => { pagingCat("on_the_air"); setCatBttn("on_the_air"); }}>방영중</button>
+        <button name="popular" className={cat == "popular" ? styles.active : ""} onClick={(e) => { pagingCat("popular"); }}>인기</button>
+        <button name="topRated" className={cat == "top_rated" ? styles.active : ""} onClick={(e) => { pagingCat("top_rated"); }}>최신</button>
+        <button name="onTheAir" className={cat == "on_the_air" ? styles.active : ""} onClick={(e) => { pagingCat("on_the_air"); }}>방영중</button>
       </div>
       <br /><br />
       <div className={styles.pagingBox}>

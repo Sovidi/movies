@@ -36,16 +36,15 @@ function List() {
   useEffect(()=>{
     setMedia("movie");
     setCat("popular");
-    setCatBttn("popular");
     setNum(1);
   }, []);
 
   return (
     <div className={styles.contents}>
       <div className={styles.contentsBox}>
-        <button name="popular" className={catBttn == "popular" ? styles.active : ""} onClick={(e)=>{pagingCat("popular"); setCatBttn("popular");}}>최신영화</button>
-        <button name="topRated" className={catBttn == "top_rated" ? styles.active : ""} onClick={(e)=>{pagingCat("top_rated"); setCatBttn("top_rated");}}>인기영화</button>
-        <button name="upcoming" className={catBttn == "upcoming" ? styles.active : ""} onClick={(e)=>{pagingCat("upcoming"); setCatBttn("upcoming");}}>곧 개봉할 영화</button>
+        <button name="popular" className={cat == "popular" ? styles.active : ""} onClick={(e)=>{pagingCat("popular");}}>최신영화</button>
+        <button name="topRated" className={cat == "top_rated" ? styles.active : ""} onClick={(e)=>{pagingCat("top_rated");}}>인기영화</button>
+        <button name="upcoming" className={cat == "upcoming" ? styles.active : ""} onClick={(e)=>{pagingCat("upcoming");}}>곧 개봉할 영화</button>
       </div>
       <br/><br/>
       <div className={styles.pagingBox}>
