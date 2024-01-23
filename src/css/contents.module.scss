@@ -36,21 +36,28 @@
 	align-items: center;
 	justify-content: center;
 	.titleBox{
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		margin: 0 130px;
 		>figure{
 			width: 30%;
 			img{
 				width: 100%;
 				border-radius: 30px;
-
 			}
 		}
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 		.infoBox{
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: space-between;
 			margin: 0 30px;
-			.titleName{font-size: 4rem;}
+			.titleName{
+				font-size: 4rem;
+				margin: 11px 0;
+			}
 			.genresBox{
 				display: flex;
 				>p{
@@ -63,7 +70,7 @@
 			}
 			.descBox{
 				margin: 20px 0;
-				width: 60%;
+				width: 100%;
 				.descTitle{
 					font-size: 1.3rem;
 					margin: 8px 0;
@@ -85,14 +92,19 @@
 		}
 		}
 	.castBox{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		margin: 50px 0;
+		>p{font-size: 3rem;}
 		.pics{
 			display: flex;
 			flex-wrap: wrap;
 			align-items: center;
 			justify-content: center;
 			.castPic{
-				margin: 0 13px;
+				margin: 20px 13px;
 				width: 130px;
 				height: 200px;
 				img{width: 100%;}
@@ -100,6 +112,11 @@
 		}
 	}
 	.videoBox{
+		>p{font-size: 3rem;}
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		margin: 50px 0;
 		.vids{
 			display: flex;
