@@ -42,6 +42,7 @@ function Tv() {
       <div className={styles.contentsBox}>
         <button name="popular" onClick={(e) => { pagingCat("popular") }}>인기</button>
         <button name="topRated" onClick={(e) => { pagingCat("top_rated") }}>최신</button>
+        <button name="onTheAir" onClick={(e) => { pagingCat("on_the_air") }}>방영중</button>
       </div>
       <br /><br />
       <div className={styles.pagingBox}>
