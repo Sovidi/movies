@@ -48,27 +48,25 @@ function Pop() {
           <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
         </figure>
         <div className={styles.infoBox}>
-          <p>{dt[0].data.original_title ? dt[0].data.original_title : dt[0].data.original_name}</p>
-          <div>
-            <p>장르</p>
+          <p className={styles.titleName}>{dt[0].data.original_title ? dt[0].data.original_title : dt[0].data.original_name}</p>
+          <div className={styles.genresBox}>
             {
               dt[0].data.genres.map(item => (
                 <p>{item.name}</p>
               ))
             }
           </div>
-          <div>
-            <p>설명</p>
-            <p>{dt[0].data.overview}</p>
+          <div className={styles.descBox}>
+            <p className={styles.descTitle}>Desc.</p>
+            <p className={styles.descText}>{dt[0].data.overview}</p>
           </div>
-          <div>
-            <p>출시일</p>
-            <p>{dt[0].data.release_date}</p>
+          <div className={styles.timeBox}>
+            <p className={styles.timeTitle}>Realeased</p>
+            <p className={styles.time}>{dt[0].data.release_date ? dt[0].data.release_date : dt[0].data.first_air_date}</p>
           </div>
           <div>
             <a href={`${dt[0].data.homepage}`} target='blank'>홈페이지 바로가기</a>
           </div>
-
         </div>
       </div>
       <div className={styles.castBox}>
@@ -77,8 +75,8 @@ function Pop() {
         {
           dt[1].data.cast.map(item => (
             <figure className={styles.castPic}>
-              <figcaption>{item.name}</figcaption>
               <img src={`${item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : pPic}`} />
+              <figcaption>{item.name}</figcaption>
             </figure>
           ))
         }
