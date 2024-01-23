@@ -13,23 +13,6 @@
     font-style: normal;
 }
 
-html {
-	background-color: black;
-	body {
-		nav {
-			height: 100px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			>a{
-				margin: 10px 20px 10px 20px;
-				background-color: grey;
-				border-radius: 11px;
-				padding: 20px;
-			}
-		}
-	}
-}
 
 ul {
 	display: flex;

@@ -2,6 +2,9 @@ html {
 	body {
 		padding: 200px 0 0 0;
 		nav {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			z-index: 100;
 			position: fixed;
 			top: 0;
@@ -10,13 +13,19 @@ html {
 			transition: 0.8s;
 			background-color: rgb(0, 0, 0);
 			&.active{
+				>a{color: black;}
 				height: 150px;
 				background-color: transparent;
 			}
-			a {
+			>a {
+				color: white;
+				margin: 10px 20px 10px 20px;
+				border-radius: 11px;
+				padding: 20px;
+				font-size: 2rem;
 				transition: 0.8s;
 				&.active {
-					background-color: red;
+					color: red;
 				}
 			}
 		}
