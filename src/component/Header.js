@@ -4,10 +4,10 @@ import { MyContext } from '../Context'
 import styles from "../css/common.module.scss"
 
 function Header() {
-	const { navBttn } = useContext(MyContext);
+	const { navBttn, navSc } = useContext(MyContext);
 
 	return (
-		<nav>
+		<nav className={navSc == "up" ? styles.active : ""}>
 			<Link className={`${navBttn == "main" ? styles.active : ""}`} to="/">홈</Link>
 			<Link className={`${navBttn == "list" ? styles.active : ""}`} to="/movie">Movie</Link>
 			<Link className={`${navBttn == "tv" ? styles.active : ""}`} to="/tv">TV</Link>

@@ -20,7 +20,7 @@ function Context({children}) {
     let [num, setNum] = useState(1);
     const [sec, setSec] = useState([]);
     const [navBttn, setNavBttn] = useState("");
-    const [catBttn, setCatBttn] = useState("");
+    const [navSc, setNavSc] = useState("up");
 
     const instance = axios.create({
         baseURL: "https://api.themoviedb.org/3",
@@ -65,9 +65,22 @@ function Context({children}) {
         dispatch({type, d: res});
     };
 
+    function handleScroll() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY === 0) {
+            setNavSc("up");
+        } else {
+            setNavSc("down");
+        }
+    }
+
     useEffect(()=> {
         forMain();
         fetchFn();
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     useEffect(()=>{
@@ -75,7 +88,7 @@ function Context({children}) {
     }, [num, media, cat]);
 
     return (
-        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, catBttn, setCatBttn}}>
+        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc}}>
             {children}
         </MyContext.Provider>
     )

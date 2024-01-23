@@ -1,6 +1,18 @@
 html {
 	body {
+		margin: 300px 0 0 0;
 		nav {
+			z-index: 100;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			height: 100px;
+			transition: 0.8s;
+			background-color: rgb(192, 192, 192);
+			&.active{
+				height: 150px;
+				background-color: transparent;
+			}
 			a {
 				transition: 0.8s;
 				&.active {
