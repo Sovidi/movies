@@ -20,6 +20,7 @@ function Context({children}) {
     let [num, setNum] = useState(1);
     const [sec, setSec] = useState([]);
     const [navBttn, setNavBttn] = useState("");
+    const [catBttn, setCatBttn] = useState("");
 
     const instance = axios.create({
         baseURL: "https://api.themoviedb.org/3",
@@ -74,7 +75,7 @@ function Context({children}) {
     }, [num, media, cat]);
 
     return (
-        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn}}>
+        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, catBttn, setCatBttn}}>
             {children}
         </MyContext.Provider>
     )

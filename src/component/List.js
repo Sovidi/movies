@@ -5,7 +5,7 @@ import styles from "../css/contents.module.scss"
 
 
 function List() {
-  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia, setNavBttn} = useContext(MyContext);
+  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
 
@@ -42,9 +42,9 @@ function List() {
   return (
     <div className={styles.contents}>
       <div className={styles.contentsBox}>
-        <button name="popular" onClick={(e)=>{pagingCat("popular")}}>최신영화</button>
-        <button name="topRated" onClick={(e)=>{pagingCat("top_rated")}}>인기영화</button>
-        <button name="upcoming" onClick={(e)=>{pagingCat("upcoming")}}>곧 개봉할 영화</button>
+        <button name="popular" className={catBttn == "popular" ? styles.active : ""} onClick={(e)=>{pagingCat("popular"); setCatBttn("popular");}}>최신영화</button>
+        <button name="topRated" className={catBttn == "top_rated" ? styles.active : ""} onClick={(e)=>{pagingCat("top_rated"); setCatBttn("top_rated");}}>인기영화</button>
+        <button name="upcoming" className={catBttn == "upcoming" ? styles.active : ""} onClick={(e)=>{pagingCat("upcoming"); setCatBttn("upcoming");}}>곧 개봉할 영화</button>
       </div>
       <br/><br/>
       <div className={styles.pagingBox}>

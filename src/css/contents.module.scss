@@ -3,9 +3,24 @@
 
 	>.contentsBox {
 		>button {
+			position: relative;
+			&::before{
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				display: block;
+				transition: 0.8s;
+				width: 0px;
+				height: 2px;
+				background-color: red;
+			}
+			&.active{
+				&::before{
+					width: 100%;
+				}
+			}
 			margin: 10px;
-			background-color: rgb(255, 162, 162);
-			border-radius: 11px;
 			padding: 8px;
 		}
 	}
