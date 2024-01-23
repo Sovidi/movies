@@ -1,0 +1,12 @@
+html {
+	body {
+		nav {
+			a {
+				transition: 0.8s;
+				&.active {
+					background-color: red;
+				}
+			}
+		}
+	}
+}

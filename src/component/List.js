@@ -5,7 +5,7 @@ import styles from "../css/contents.module.scss"
 
 
 function List() {
-  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia} = useContext(MyContext);
+  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia, setNavBttn} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
 
@@ -13,6 +13,11 @@ function List() {
     e.preventDefault();
     fetchFn("search", elInput.current.value);
   };
+
+  useEffect(()=>{
+		setNavBttn("list");
+	}, []);
+
 
 
   const pagingCat = (type) => {

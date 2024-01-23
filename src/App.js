@@ -5,19 +5,15 @@ import List from './component/List';
 import Pop from './component/Pop';
 import Tv from './component/Tv';
 import Main from './component/Main';
-import { useState } from 'react';
+import Header from "./component/Header"
+import { useContext } from 'react';
 
 
 function App() {
-  const [cl, setCl] = useState("");
   return (
     <Context>
       <HashRouter>
-        <nav>
-          <Link to="/">홈</Link>
-          <Link to="/movie">Movie</Link>
-          <Link to="/tv">TV</Link>
-        </nav>
+        <Header/>
         <main>
           <Routes>
             <Route path='/' element={<Main/>}></Route>

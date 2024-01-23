@@ -4,9 +4,14 @@ import Item from './Item';
 import styles from "../css/contents.module.scss"
 
 function Tv() {
-  let { data, fetchFn, num, setNum, cat, setCat, media, setMedia } = useContext(MyContext);
+  let { data, fetchFn, num, setNum, cat, setCat, media, setMedia, setNavBttn } = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
+
+  useEffect(()=>{
+		setNavBttn("tv");
+	}, []);
+
 
   const searching = async (e) => {
     e.preventDefault();
