@@ -21,6 +21,7 @@ function Tv() {
   const contentsLoading = async () => {
     await setMedia("tv");
     await setCat("popular");
+    setCatBttn("popularT");
     await setNum(1);
   }
 

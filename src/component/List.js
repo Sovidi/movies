@@ -36,6 +36,7 @@ function List() {
   useEffect(()=>{
     setMedia("movie");
     setCat("popular");
+    setCatBttn("popular");
     setNum(1);
   }, []);
 
