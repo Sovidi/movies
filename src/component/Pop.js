@@ -5,6 +5,7 @@ import styles from "../css/contents.module.scss"
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import pPic from "../asset/person.png"
 
 
 function Pop() {
@@ -24,7 +25,8 @@ function Pop() {
   const dtLd = async () => {
     const dataSet = [
       await instance.get(`/${media}/${items.id}`),
-      await instance.get(`/${media}/${items.id}/credits`)
+      await instance.get(`/${media}/${items.id}/credits`),
+      await instance.get(`/${media}/${items.id}/videos`),
     ]
     setDt(dataSet);
   };
@@ -59,17 +61,41 @@ function Pop() {
             <p>설명</p>
             <p>{dt[0].data.overview}</p>
           </div>
+          <div>
+            <p>출시일</p>
+            <p>{dt[0].data.release_date}</p>
+          </div>
+          <div>
+            <a href={`${dt[0].data.homepage}`} target='blank'>홈페이지 바로가기</a>
+          </div>
+
         </div>
       </div>
       <div className={styles.castBox}>
+        <p>출연진</p>
+        <div className={styles.pics}>
         {
           dt[1].data.cast.map(item => (
             <figure className={styles.castPic}>
               <figcaption>{item.name}</figcaption>
-              <img src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} />
+              <img src={`${item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : pPic}`} />
             </figure>
           ))
         }
+        </div>
+      </div>
+      <div className={styles.videoBox}>
+        <p>관련영상</p>
+      <div className={styles.vids}>
+      {
+          dt[2].data.results.map(item=>(
+            <figure>
+              <figcaption>{item.name}</figcaption>
+              <iframe src={`https://www.youtube.com/embed/${item.key}`} allowfullscreen></iframe>
+            </figure>
+          ))
+      }
+      </div>
       </div>
     </section>
   )

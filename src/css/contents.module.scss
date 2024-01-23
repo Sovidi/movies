@@ -44,14 +44,30 @@
 	
 	}
 	.castBox{
+		.pics{
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+	
+		}
 		margin: 50px 0 0 0;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
 		.castPic{
 			width: 130px;
 			img{width: 100%;}
+		}
+	}
+
+	.videoBox{
+		.vids{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			iframe{
+				width: 1200px;
+				height: 800px;
+			}
 		}
 	}
 }
