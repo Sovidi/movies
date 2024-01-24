@@ -114,6 +114,59 @@
 }
 
 
+@media (max-width: 1000px) {
+  .popBox{
+    .titleBox{
+      >.titlePosterBox{
+        width: 40%;
+        >figure{
+          img{
+          }
+        }  
+      }
+      .infoBox{
+        width: 60%;
+        .titleName{
+        }
+        .genresBox{
+          >p{
+          }
+        }
+        .descBox{
+          .descTitle{
+          }
+          .descText{
+          }
+        }
+        .timeBox{
+          .timeTitle{
+          }
+          .time{}
+        }
+      }
+      }
+    .castBox{
+      >p{}
+      .pics{
+        .castPic{
+          img{}
+        }
+      }
+    }
+    .videoBox{
+      >p{}
+      .vids{
+        >figure{
+          height: 800px;
+          iframe{
+          }  
+        }
+      }
+    }
+  }  
+}
+
+
 @media (max-width: 800px) {
   .popBox{
     .titleBox{
