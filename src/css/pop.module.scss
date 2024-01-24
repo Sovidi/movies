@@ -1,0 +1,222 @@
+.popBox{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.titleBox{
+    width: 100%;
+    padding: 0 10%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0 130px;
+    >.titlePosterBox{
+      width: 30%;
+      >figure{
+        img{
+          width: 100%;
+          border-radius: 30px;
+        }
+      }  
+    }
+		.infoBox{
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: space-between;
+			margin: 0 30px;
+			.titleName{
+				font-size: 4rem;
+				margin: 11px 0;
+			}
+			.genresBox{
+				display: flex;
+				>p{
+					border: 2px solid black;
+					padding: 13px;
+					background-color: rgb(194, 194, 194);
+					border-radius: 13px;
+					margin: 20px 11px;
+				}
+			}
+			.descBox{
+				margin: 20px 0;
+				width: 100%;
+				.descTitle{
+					font-size: 1.3rem;
+					margin: 8px 0;
+				}
+				.descText{
+					
+				}
+			}
+			.timeBox{
+				display: flex;
+				align-items: center;
+				margin: 30px 0;
+				.timeTitle{
+					font-size: 1.3rem;
+					margin: 0 20px 0 0;
+				}
+				.time{}
+			}
+		}
+		}
+	.castBox{
+    width: 100%;
+    padding: 0 3%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 50px 0;
+		>p{font-size: 3rem;}
+		.pics{
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+			.castPic{
+				margin: 20px 13px;
+				width: 130px;
+				height: 200px;
+				img{width: 100%;}
+			}
+		}
+	}
+	.videoBox{
+    width: 100%;
+    padding: 0 3%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 50px 0;
+		>p{font-size: 3rem;}
+		.vids{
+      width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+      >figure{
+        margin: 20px 0;
+        width: 100%;
+        height: 800px;
+        iframe{
+          width: 100%;
+          height: 100%;
+        }  
+      }
+		}
+	}
+}
+
+
+@media (max-width: 800px) {
+  .popBox{
+    .titleBox{
+      flex-direction: column;
+      >.titlePosterBox{
+        width: 100%;
+        >figure{
+          img{
+          }
+        }  
+      }
+      .infoBox{
+        width: 100%;
+        .titleName{
+        }
+        .genresBox{
+          >p{
+          }
+        }
+        .descBox{
+          .descTitle{
+          }
+          .descText{
+          }
+        }
+        .timeBox{
+          .timeTitle{
+          }
+          .time{}
+        }
+      }
+      }
+    .castBox{
+      >p{}
+      .pics{
+        .castPic{
+          img{}
+        }
+      }
+    }
+    .videoBox{
+      >p{}
+      .vids{
+        >figure{
+          height: 500px;
+          iframe{
+          }  
+        }
+      }
+    }
+  }  
+}
+
+
+@media (max-width: 380px) {
+  .popBox{
+    .titleBox{
+      flex-direction: column;
+      >.titlePosterBox{
+        width: 100%;
+        >figure{
+          img{
+          }
+        }  
+      }
+      .infoBox{
+        width: 100%;
+        .titleName{
+        }
+        .genresBox{
+          >p{
+          }
+        }
+        .descBox{
+          .descTitle{
+          }
+          .descText{
+          }
+        }
+        .timeBox{
+          .timeTitle{
+          }
+          .time{}
+        }
+      }
+      }
+    .castBox{
+      >p{}
+      .pics{
+        .castPic{
+          img{}
+        }
+      }
+    }
+    .videoBox{
+      >p{}
+      .vids{
+        >figure{
+          height: 300px;
+          iframe{
+          }  
+        }
+      }
+    }
+  }  
+}

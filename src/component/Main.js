@@ -10,6 +10,19 @@ import styles from "../css/main.module.scss"
 function Main() {
 	const { sec, setNavBttn } = useContext(MyContext);
 
+	const params = {
+		spaceBetween: 30,
+		navigation: true,
+		modules: [Navigation],
+		onSlideChange: () => console.log('slide change'),
+		onSwiper: (swiper) => console.log(swiper),
+		breakpoints: {
+			380: {slidesPerView: 1},
+			800: {slidesPerView: 2},
+			1000: {slidesPerView: 3}
+		}
+	}
+
 	useEffect(()=>{
 		setNavBttn("main");
 	}, []);
@@ -18,14 +31,9 @@ function Main() {
 	if (!sec[0] || !sec[1] || !sec[2] || !sec[3]) return <>로딩중</>;
 	// if(sec[0] == undefined || sec[1] == undefined || sec[2] == undefined || sec[3] == undefined) return <>로딩중</>;
 	return (
-		<section>
+		<section className={styles.mainSec}>
 			<Swiper
-				spaceBetween={30}
-				slidesPerView={3}
-				navigation={true}
-				modules={[Navigation]}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				{...params}
 			>
 				{
 					sec[0].data.results.map(item => (
@@ -41,12 +49,7 @@ function Main() {
 			</Swiper>
 
 			<Swiper
-				spaceBetween={30}
-				slidesPerView={3}
-				navigation={true}
-				modules={[Navigation]}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				{...params}
 			>
 				{
 					sec[1].data.results.map(item => (
@@ -61,12 +64,7 @@ function Main() {
 			</Swiper>
 
 			<Swiper
-				spaceBetween={30}
-				slidesPerView={3}
-				navigation={true}
-				modules={[Navigation]}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				{...params}
 			>
 				{
 					sec[2].data.results.map(item => (
@@ -81,12 +79,7 @@ function Main() {
 			</Swiper>
 
 			<Swiper
-				spaceBetween={30}
-				slidesPerView={3}
-				navigation={true}
-				modules={[Navigation]}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				{...params}
 			>
 				{
 					sec[3].data.results.map(item => (

@@ -50,7 +50,6 @@ function Context({children}) {
             case "get" :
             res = await instance.get(`/${media}/${cat}?page=${num}`);
             res = res.data.results;
-            console.log(media, cat, num);
             break;
 
             case "more" :
@@ -67,7 +66,7 @@ function Context({children}) {
 
     function handleScroll() {
         const scrollY = window.scrollY || window.pageYOffset;
-        if (scrollY === 0) {
+        if (scrollY == 0) {
             setNavSc("up");
         } else {
             setNavSc("down");

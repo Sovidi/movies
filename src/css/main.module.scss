@@ -1,5 +1,26 @@
-html{
-    .hehe{
-        background-color: red;
+.mainSec{
+    width: 100%;
+    >div{
+        >div{
+            >div{
+                padding: 0 3%;
+                figure{
+                    >figcaption{
+                    }
+                    >img{width: 100%;}
+                }
+            }
+        }
     }
 }
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 800px) {
+}
+
+@media (max-width: 380px) {
+}
+
+

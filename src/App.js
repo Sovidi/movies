@@ -6,7 +6,6 @@ import Pop from './component/Pop';
 import Tv from './component/Tv';
 import Main from './component/Main';
 import Header from "./component/Header"
-import { useContext } from 'react';
 
 
 function App() {

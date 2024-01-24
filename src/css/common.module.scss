@@ -31,3 +31,28 @@ html {
 		}
 	}
 }
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 800px) {
+	html{font-size: 10px;}
+}
+
+@media (max-width: 380px) {
+	html{font-size: 8px;}
+}
+
+@media (max-width: 300px) {
+	html{
+		font-size: 8px;
+		body{
+			nav{
+				justify-content: center;
+				>a{
+					padding: 3%;
+				}
+			}	
+		}
+	}
+}

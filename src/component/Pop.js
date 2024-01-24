@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { MyContext } from '../Context';
-import styles from "../css/contents.module.scss"
+import styles from "../css/pop.module.scss"
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -44,9 +44,11 @@ function Pop() {
   return (
     <section className={styles.popBox}>
       <div className={styles.titleBox}>
-        <figure>
-          <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
-        </figure>
+        <div className={styles.titlePosterBox}>
+          <figure>
+            <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
+          </figure>
+        </div>
         <div className={styles.infoBox}>
           <p className={styles.titleName}>{dt[0].data.original_title ? dt[0].data.original_title : dt[0].data.original_name}</p>
           <div className={styles.genresBox}>
