@@ -10,9 +10,17 @@
                     >img{width: 100%;}
                 }
             }
+            &:nth-of-type(2){
+                color: red;
+            }
+            &:nth-of-type(3){
+                color: red;
+            }    
         }
     }
 }
+
+
 
 @media (max-width: 1000px) {
 }

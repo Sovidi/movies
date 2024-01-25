@@ -51,8 +51,8 @@ function Tv() {
       </div>
       <div className={styles.pagingBox}>
         <button className={`${styles.bfBttn} ${num <= 1 ? styles.active : ""}`} ref={bfBttn} name="before" onClick={(e) => { pagingBefore(e) }}>이전</button>
+        <p>현재 페이지 {num}</p>
         <button className={styles.bfBttn} name="next" onClick={() => { pagingNext() }}>다음</button>
-        <p>현재 페이지{num}</p>
       </div>
       <form onSubmit={(e) => { searching(e) }}>
         <input ref={elInput} name="search"></input>

@@ -59,11 +59,9 @@
 			.genresBox{
 				display: flex;
 				>p{
-					border: 2px solid black;
+					border-bottom: 3px solid red;
 					padding: 13px;
-					background-color: rgb(194, 194, 194);
-					border-radius: 13px;
-					margin: 20px 11px;
+					margin: 11px 20px 11px 0;
 				}
 			}
 			.descBox{
