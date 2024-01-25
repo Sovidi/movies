@@ -37,12 +37,13 @@ function Pop() {
 
   useEffect(() => {
     console.log(dt);
-  }, [dt]);
+  }, [dt[0], dt[1], dt[2]]);
 
-  if (!dt[0] || !dt[1]) return <>로딩중</>
+  if (!dt[0] || !dt[1] || !dt[2]) return <>로딩중</>
   // else if(!dt[0].data.genres) return <>로딩중</>
   return (
     <section className={styles.popBox}>
+      <div className={styles.bPoster} style={{"background-image" : `url(https://image.tmdb.org/t/p/original/${dt[0].data.backdrop_path})`}}/>
       <div className={styles.titleBox}>
         <div className={styles.titlePosterBox}>
           <figure>
@@ -63,7 +64,7 @@ function Pop() {
             <p className={styles.descText}>{dt[0].data.overview}</p>
           </div>
           <div className={styles.timeBox}>
-            <p className={styles.timeTitle}>Realeased</p>
+            <p className={styles.timeTitle}>Released</p>
             <p className={styles.time}>{dt[0].data.release_date ? dt[0].data.release_date : dt[0].data.first_air_date}</p>
           </div>
           <div>
@@ -85,17 +86,17 @@ function Pop() {
         </div>
       </div>
       <div className={styles.videoBox}>
-        <p>관련영상</p>
-      <div className={styles.vids}>
-      {
-          dt[2].data.results.map(item=>(
-            <figure>
-              <figcaption>{item.name}</figcaption>
-              <iframe src={`https://www.youtube.com/embed/${item.key}`} allowfullscreen></iframe>
-            </figure>
-          ))
-      }
-      </div>
+          <p>관련영상</p>
+        <div className={styles.vids}>
+        {
+            dt[2].data.results.map(item=>(
+              <figure>
+                <figcaption>{item.name}</figcaption>
+                <iframe src={`https://www.youtube.com/embed/${item.key}`} allowfullscreen></iframe>
+              </figure>
+            ))
+        }
+        </div>
       </div>
     </section>
   )
