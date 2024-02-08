@@ -1,5 +1,5 @@
 import './App.scss';
-import { Context, MyContext } from './Context';
+import { Context } from './Context';
 import {HashRouter, Routes, Route, Link} from "react-router-dom";
 import List from './component/List';
 import Pop from './component/Pop';
