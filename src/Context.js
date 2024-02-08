@@ -17,7 +17,7 @@ function Context({children}) {
     const [data, dispatch] = useReducer(insert, []);
     const [media, setMedia] = useState("movie");
     const [cat, setCat] = useState("popular");
-    let [num, setNum] = useState(1);
+    const [num, setNum] = useState(1);
     const [sec, setSec] = useState([]);
     const [navBttn, setNavBttn] = useState("");
     const [navSc, setNavSc] = useState("up");

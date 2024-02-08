@@ -5,7 +5,8 @@ import styles from "../css/contents.module.scss"
 
 
 function List() {
-  let {data, fetchFn, num, setNum, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn} = useContext(MyContext);
+  const {data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn} = useContext(MyContext);
+  let {num, setNum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
 
