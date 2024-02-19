@@ -6,9 +6,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import styles from "../css/main.module.scss"
+import { useNavigate } from 'react-router-dom';
 
 function Main() {
 	const { sec, setNavBttn } = useContext(MyContext);
+	const navi = useNavigate();
 
 	const params = {
 		spaceBetween: 30,
@@ -38,7 +40,7 @@ function Main() {
 				{
 					sec[0].data.results.map(item => (
 						<SwiperSlide>
-							<figure>
+							<figure onClick={()=>{navi(`/pop`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
 							</figure>
@@ -54,7 +56,7 @@ function Main() {
 				{
 					sec[1].data.results.map(item => (
 						<SwiperSlide>
-							<figure>
+							<figure onClick={()=>{navi(`/pop`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>
@@ -69,7 +71,7 @@ function Main() {
 				{
 					sec[2].data.results.map(item => (
 						<SwiperSlide>
-							<figure>
+							<figure onClick={()=>{navi(`/pop`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>
@@ -84,7 +86,7 @@ function Main() {
 				{
 					sec[3].data.results.map(item => (
 						<SwiperSlide>
-							<figure>
+							<figure onClick={()=>{navi(`/pop`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>
