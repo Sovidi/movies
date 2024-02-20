@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
@@ -13,6 +13,7 @@ function Search() {
   const searching = async (e) => {
     e.preventDefault();
     setSInp(elInput.current.value);
+    setSSnum(1);
     await fetchFn("search", elInput.current.value);
     setSDet(Date.now());
   };
@@ -41,7 +42,7 @@ function Search() {
       <div className={styles.pagingBox}>
         <button className={`${styles.bfBttn} ${sNum <= 1 ? styles.active : ""}`} ref={bfBttn} name="before" onClick={(e)=>{pagingBefore(e)}}>이전</button>
         <p>현재 페이지 {sNum}</p>
-        <button className={styles.bfBttn} name="next" onClick={()=>{pagingNext()}}>다음</button>
+        <button className={`${styles.bfBttn} ${!sData.length ? styles.active : ""}`} name="next" onClick={()=>{pagingNext()}}>다음</button>
       </div>
       <form onSubmit={(e)=>{searching(e)}}>
         <input ref={elInput} name="search"></input>
@@ -49,9 +50,9 @@ function Search() {
       </form>
       <ul className={styles.conGrid}>
             {
-                sData.map(item => (
+                sData.length ? sData.map(item => (
                   <Item key={item.id} item={item}/>
-                ))
+                )) : <>결과없음</>
             }
       </ul>
     </section>
