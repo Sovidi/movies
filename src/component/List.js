@@ -2,24 +2,27 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
+import { useNavigate } from 'react-router-dom';
 
 
 function List() {
-  const {data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn} = useContext(MyContext);
+  const {data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn, sInp, setSInp, setSDet} = useContext(MyContext);
   let {num, setNum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
+  const navi = useNavigate();
 
-  const searching = (e) => {
+  const searching = async (e) => {
     e.preventDefault();
-    fetchFn("search", elInput.current.value);
+    setSInp(elInput.current.value);
+    await fetchFn("search", elInput.current.value);
+    setSDet(Date.now());
+    navi(`/search`);
   };
 
   useEffect(()=>{
 		setNavBttn("list");
 	}, []);
-
-
 
   const pagingCat = (type) => {
     setCat(type);

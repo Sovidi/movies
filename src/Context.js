@@ -15,12 +15,16 @@ const insert = (state, action) => {
 
 function Context({children}) {
     const [data, dispatch] = useReducer(insert, []);
+    const [sData, setSData] = useState([]);
     const [media, setMedia] = useState("movie");
     const [cat, setCat] = useState("popular");
     const [num, setNum] = useState(1);
+    const [sNum, setSSnum] = useState(1);
     const [sec, setSec] = useState([]);
     const [navBttn, setNavBttn] = useState("");
     const [navSc, setNavSc] = useState("up");
+    const [sInp, setSInp] = useState("");
+    const [sDet, setSDet] = useState([]);
 
     const instance = axios.create({
         baseURL: "https://api.themoviedb.org/3",
@@ -43,25 +47,28 @@ function Context({children}) {
         let res;
         switch(type) {
             case "search" : 
-            res = await instance.get(`/search/${media}?query=${data}`);
+            res = await instance.get(`/search/${media}?query=${sInp}&page=${sNum}`);
             res = res.data.results;
+            setSData(res);
             break;
 
             case "get" :
             res = await instance.get(`/${media}/${cat}?page=${num}`);
             res = res.data.results;
+            dispatch({type, d: res});
             break;
 
             case "more" :
             res = await instance.get(`/${media}/${cat}?page=${data}`);
             res = res.data.results;
+            dispatch({type, d: res});
             break;
     
             default :
             res = await instance.get(`/${media}/${cat}?page=${num}`);
             res = res.data.results;
+            dispatch({type, d: res});
             }
-        dispatch({type, d: res});
     };
 
     function handleScroll() {
@@ -86,8 +93,13 @@ function Context({children}) {
         fetchFn();
     }, [num, media, cat]);
 
+    useEffect(()=>{
+        fetchFn("search", "");
+        console.log(sDet);
+    }, [sNum, sDet])
+
     return (
-        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc}}>
+        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc, sNum, setSSnum, sInp, setSInp, sData, setSData, setSDet}}>
             {children}
         </MyContext.Provider>
     )

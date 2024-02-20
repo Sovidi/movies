@@ -2,23 +2,27 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
+import { useNavigate } from 'react-router-dom';
 
 function Tv() {
-  const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn } = useContext(MyContext);
+  const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn, sInp, setSInp, setSDet } = useContext(MyContext);
   let {num, setNum} = useContext(MyContext);
-
   const elInput = useRef();
   const bfBttn = useRef();
-
-  useEffect(()=>{
-		setNavBttn("tv");
-	}, []);
+  const navi = useNavigate();
 
 
   const searching = async (e) => {
     e.preventDefault();
+    setSInp(elInput.current.value);
     await fetchFn("search", elInput.current.value);
+    setSDet(Date.now());
+    navi(`/search`);
   };
+
+  useEffect(()=>{
+		setNavBttn("tv");
+	}, []);
 
   const contentsLoading = async () => {
     await setMedia("tv");

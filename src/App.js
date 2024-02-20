@@ -6,6 +6,7 @@ import Pop from './component/Pop';
 import Tv from './component/Tv';
 import Main from './component/Main';
 import Header from "./component/Header"
+import Search from './component/Search';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path='/movie' element={<List/>}></Route>
             <Route path='/tv' element={<Tv/>}></Route>
             <Route path='/pop' element={<Pop/>}></Route>
+            <Route path='/search' element={<Search/>}></Route>
           </Routes>
         </main>
       </HashRouter>
