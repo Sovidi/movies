@@ -5,7 +5,7 @@ import styles from "../css/contents.module.scss"
 import { useNavigate } from 'react-router-dom';
 
 function Tv() {
-  const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn, sInp, setSInp, setSDet } = useContext(MyContext);
+  const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, sInp, setSInp, setSDet } = useContext(MyContext);
   let {num, setNum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
@@ -24,15 +24,9 @@ function Tv() {
 		setNavBttn("tv");
 	}, []);
 
-  const contentsLoading = async () => {
-    await setMedia("tv");
-    await setCat("popular");
-    await setNum(1);
-  }
-
   const pagingCat = async (type) => {
-    setNum(1);
     setCat(type);
+    setNum(1);
   };
 
   const pagingBefore = async (e) => {
@@ -44,7 +38,9 @@ function Tv() {
   };
 
   useEffect(() => {
-    contentsLoading();
+    setMedia("tv");
+    setCat("popular");
+    setNum(1);
   }, [])
 
 

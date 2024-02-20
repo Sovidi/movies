@@ -95,7 +95,6 @@ function Context({children}) {
 
     useEffect(()=>{
         fetchFn("search", "");
-        console.log(sDet);
     }, [sNum, sDet])
 
     return (

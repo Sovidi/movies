@@ -5,7 +5,7 @@ import styles from "../css/contents.module.scss"
 
 
 function Search() {
-  const {sData, setSData, data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn, sInp, setSInp, setSDet} = useContext(MyContext);
+  const {sData, setSData, fetchFn, setNavBttn, sInp, setSInp, setSDet} = useContext(MyContext);
   let {num, setNum, sNum, setSSnum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();

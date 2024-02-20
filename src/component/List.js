@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function List() {
-  const {data, fetchFn, cat, setCat, media, setMedia, setNavBttn, catBttn, setCatBttn, sInp, setSInp, setSDet} = useContext(MyContext);
+  const {data, fetchFn, cat, setCat, media, setMedia, setNavBttn, sInp, setSInp, setSDet} = useContext(MyContext);
   let {num, setNum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
