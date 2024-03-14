@@ -14,6 +14,8 @@ function Pop() {
   const location = useLocation();
   const items = location.state.item;
 
+  console.log(location);
+
   // const { code } = useParams();
   // let detail = data.filter(item => item.id == code);
 
@@ -29,6 +31,7 @@ function Pop() {
       await instance.get(`/${media}/${items.id}/videos`),
     ]
     setDt(dataSet);
+    console.log(dataSet);
   };
 
   useEffect(() => {

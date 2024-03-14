@@ -7,9 +7,19 @@
                 margin: 30px 0;
                 figure{
                     cursor: pointer;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
                     >figcaption{
+                        font-size: 1.5rem;
                     }
-                    >img{width: 100%;}
+                    >img{
+                        margin: 10px 0 0 0;
+                        border-radius: 13px;
+                        box-shadow: 0 0 10px gray;
+                        width: 100%;
+                    }
                 }
             }
             &:nth-of-type(2){

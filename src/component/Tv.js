@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function Tv() {
   const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, sInp, setSInp, setSDet } = useContext(MyContext);
@@ -10,6 +10,7 @@ function Tv() {
   const elInput = useRef();
   const bfBttn = useRef();
   const navi = useNavigate();
+  let [pNum, setPNum] = useState(1);
 
 
   const searching = async (e) => {
@@ -35,6 +36,11 @@ function Tv() {
 
   const pagingNext = async () => {
     setNum(++num);
+  };
+
+  const pMore = () => {
+    fetchFn("more", pNum);
+    setPNum(++pNum);
   };
 
   useEffect(() => {
@@ -67,6 +73,7 @@ function Tv() {
             ))
           }
       </ul>
+      {/* <button onClick={()=>{pMore()}}>더보기 text</button> */}
     </section>
   )
 }

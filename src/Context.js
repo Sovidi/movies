@@ -31,6 +31,36 @@ function Context({children}) {
         params: {api_key: "f89a6c1f22aca3858a4ae7aef10de967"}
     });
 
+    const a = [1, 2, 3, 4, 5];
+    const b = [
+        {
+            test1: 1,
+            test2: 2,
+            test3: 3
+        },
+        {				
+            test1: 1,
+            test2: 2,
+            test3: 3
+        },
+        {				
+            test1: 1,
+            test2: 2,
+            test3: 3
+        }
+		];
+
+		const dTest = () => {
+			const c = a.filter(item=>{
+				return b.some(obj => obj.test2 == item);
+			})
+			console.log(c);
+		}
+
+		useEffect(()=>{
+			dTest();
+		}, [])
+
     const forMain = async () => {
         let res;
         const mainMvList = [
@@ -68,7 +98,7 @@ function Context({children}) {
             res = await instance.get(`/${media}/${cat}?page=${num}`);
             res = res.data.results;
             dispatch({type, d: res});
-            }
+            };
     };
 
     function handleScroll() {
