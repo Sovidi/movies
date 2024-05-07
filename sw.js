@@ -1,6 +1,6 @@
 const staticCacheName = "version-1"
 const urlsToCache = [
-    "/레파지토리명/index.html", '/레파지토리명/static/js/bundle.js', '/레파지토리명/manifest.json',
+    "/movies/index.html", '/movies/static/js/bundle.js', '/movies/manifest.json',
 ]
 
 const dynamicCache = "dynamicCache";
