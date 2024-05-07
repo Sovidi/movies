@@ -5,6 +5,8 @@ import styles from "../css/pop.module.scss"
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
 import pPic from "../asset/person.png"
 
 
@@ -12,12 +14,32 @@ function Pop() {
   const { data, fetchFn, mId, setMId, media } = useContext(MyContext);
   const [dt, setDt] = useState([]);
   const location = useLocation();
-  const items = location.state.item;
+  const [items, setItems] = useState([]);
+  const LItems = location.state.item;
+  const navi = useNavigate();
 
-  console.log(location);
+  useEffect(()=>{
+    setItems(LItems);
+  }, [LItems]);
+
+  // console.log(location);
 
   // const { code } = useParams();
   // let detail = data.filter(item => item.id == code);
+
+  const params = {
+		spaceBetween: 30,
+		navigation: true,
+		modules: [Navigation],
+		onSlideChange: () => console.log('slide change'),
+		onSwiper: (swiper) => console.log(swiper),
+		breakpoints: {
+			380: {slidesPerView: 1},
+			800: {slidesPerView: 2},
+			1000: {slidesPerView: 5}
+		}
+	}
+
 
   const instance = axios.create({
     baseURL: "https://api.themoviedb.org/3",
@@ -26,23 +48,24 @@ function Pop() {
 
   const dtLd = async () => {
     const dataSet = [
-      await instance.get(`/${media}/${items.id}`),
-      await instance.get(`/${media}/${items.id}/credits`),
-      await instance.get(`/${media}/${items.id}/videos`),
+      await instance.get(`/${media}/${items.length ? items.id : LItems.id}`),
+      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/credits`),
+      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/videos`),
+      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/similar`),
     ]
     setDt(dataSet);
     console.log(dataSet);
   };
 
   useEffect(() => {
-    dtLd();
-  }, [media]);
+    dtLd()
+  }, [media, LItems]);
 
   useEffect(() => {
     console.log(dt);
-  }, [dt[0], dt[1], dt[2]]);
+  }, [dt[0], dt[1], dt[2], dt[3]]);
 
-  if (!dt[0] || !dt[1] || !dt[2]) return <>로딩중</>
+  if (!dt[0] || !dt[1] || !dt[2] || !dt[3]) return <>로딩중</>
   // else if(!dt[0].data.genres) return <>로딩중</>
   return (
     <section className={styles.popBox}>
@@ -89,7 +112,7 @@ function Pop() {
         </div>
       </div>
       <div className={styles.videoBox}>
-          <p>관련영상</p>
+        <p>관련영상</p>
         <div className={styles.vids}>
         {
             dt[2].data.results.map(item=>(
@@ -100,6 +123,23 @@ function Pop() {
             ))
         }
         </div>
+      </div>
+      <div className={styles.similarBox}>
+        <p className={styles.title}>비슷한 영화</p>
+        <Swiper
+          {...params}
+        >
+          {
+            dt[3].data.results.map(item => (
+                <SwiperSlide>
+                  <figure onClick={()=>{navi(`/pop`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
+                    <figcaption>{item.title}{item.name}</figcaption>
+                    <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
+                  </figure>
+                </SwiperSlide>
+            ))
+          }
+        </Swiper>
       </div>
     </section>
   )

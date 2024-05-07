@@ -135,6 +135,32 @@
       }
 		}
 	}
+  .similarBox{
+    padding: 0 3%;
+    >.title{
+      font-size: 3rem;
+      margin-bottom: 50px;
+    }
+    width: 100vw;
+    text-align: center;
+    .simContent{  
+      >figcaption{
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+      }
+      >img{
+        width: 100%;
+        border-radius: 13px;
+        box-shadow: 0 0 13px gray;
+      }
+    }
+    >div{
+      >div{
+        &:nth-of-type(2){color: red;}
+        &:nth-of-type(3){color: red;}
+      }
+    }
+  }
 }
 
 
