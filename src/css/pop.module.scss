@@ -143,19 +143,32 @@
     }
     width: 100%;
     text-align: center;
-    .simContent{  
-      >figcaption{
-        font-size: 1.3rem;
-        margin-bottom: 8px;
-      }
-      >img{
-        width: 100%;
-        border-radius: 13px;
-        box-shadow: 0 0 13px gray;
-      }
-    }
     >div{
       >div{
+        &:nth-of-type(1){
+          >div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            >.simContent{
+              transition: 0.8s;
+              width: 80%;
+              &:hover{
+                scale: 110%;
+              } 
+              >figcaption{
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+              }
+              >img{
+                width: 100%;
+                border-radius: 13px;
+                box-shadow: 0 0 13px gray;
+              }
+            }
+          }
+        }
         &:nth-of-type(2){color: red;}
         &:nth-of-type(3){color: red;}
       }

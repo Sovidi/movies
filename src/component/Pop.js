@@ -41,8 +41,8 @@ function Pop() {
 		onSlideChange: () => console.log('slide change'),
 		onSwiper: (swiper) => console.log(swiper),
 		breakpoints: {
-			380: {slidesPerView: 1},
-			800: {slidesPerView: 2},
+			380: {slidesPerView: 2},
+			800: {slidesPerView: 3},
 			1000: {slidesPerView: 5}
 		}
 	}

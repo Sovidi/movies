@@ -50,6 +50,10 @@
 		width: 100%;
 		margin: 50px 0 0 0;
 		>.mGrid{
+			transition: 0.8s;
+			&:hover{
+				scale: 110%;
+			}
 			cursor: pointer;
 			display: flex;
 			flex-direction: column;
