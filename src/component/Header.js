@@ -9,7 +9,7 @@ function Header() {
 	return (
 		<nav className={navSc == "up" ? styles.active : ""}>
 			<Link className={`${navBttn == "main" ? styles.active : ""}`} to="/">홈</Link>
-			<Link className={`${navBttn == "list" ? styles.active : ""} ${navBttn == "movie" ? styles.active : ""}`} to="/movie/list">Movie</Link>
+			<Link className={`${navBttn == "list" ? styles.active : ""} ${navBttn == "movie" ? styles.active : ""}`} to="/list/movie">Movie</Link>
 			<Link className={`${navBttn == "tv" ? styles.active : ""}`} to="/tv/tv">TV</Link>
 		</nav>
 	)

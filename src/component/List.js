@@ -18,7 +18,7 @@ function List() {
     setSInp(elInput.current.value);
     await fetchFn("search", elInput.current.value);
     setSDet(Date.now());
-    navi(`/${pMedia}/search`);
+    navi(`/search/${pMedia}`);
   };
 
   useEffect(()=>{

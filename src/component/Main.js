@@ -40,7 +40,7 @@ function Main() {
 				{
 					sec[0].data.results.map(item => (
 						<SwiperSlide>
-							<figure onClick={()=>{navi(`/movie/pop`, {state:{item}})}}>
+							<figure onClick={()=>{navi(`/pop/movie`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
 							</figure>
@@ -56,7 +56,7 @@ function Main() {
 				{
 					sec[1].data.results.map(item => (
 						<SwiperSlide>
-							<figure onClick={()=>{navi(`/movie/pop`, {state:{item}})}}>
+							<figure onClick={()=>{navi(`/pop/movie`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>
@@ -71,7 +71,7 @@ function Main() {
 				{
 					sec[2].data.results.map(item => (
 						<SwiperSlide>
-							<figure onClick={()=>{navi(`/tv/pop`, {state:{item}})}}>
+							<figure onClick={()=>{navi(`/pop/tv`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>
@@ -86,7 +86,7 @@ function Main() {
 				{
 					sec[3].data.results.map(item => (
 						<SwiperSlide>
-							<figure onClick={()=>{navi(`/tv/pop`, {state:{item}})}}>
+							<figure onClick={()=>{navi(`/pop/tv`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>
 								<img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
 							</figure>

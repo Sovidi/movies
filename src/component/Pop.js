@@ -139,7 +139,7 @@ function Pop() {
           {
             dt[3].data.results.map(item => (
                 <SwiperSlide>
-                  <figure onClick={()=>{navi(`/${pMedia}/pop`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
+                  <figure onClick={()=>{navi(`/pop/${pMedia}`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
                     <figcaption>{item.title}{item.name}</figcaption>
                     <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : moviePic}`} />
                   </figure>

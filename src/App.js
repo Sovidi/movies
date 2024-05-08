@@ -17,10 +17,10 @@ function App() {
         <main>
           <Routes>
             <Route path='/' element={<Main/>}></Route>
-            <Route path='/:pMedia/list' element={<List/>}></Route>
-            <Route path='/:pMedia/tv' element={<Tv/>}></Route>
-            <Route path='/:pMedia/pop' element={<Pop/>}></Route>
-            <Route path='/:pMedia/search' element={<Search/>}></Route>
+            <Route path='/list/:pMedia' element={<List/>}></Route>
+            <Route path='/tv/:pMedia' element={<Tv/>}></Route>
+            <Route path='/pop/:pMedia' element={<Pop/>}></Route>
+            <Route path='/search/:pMedia' element={<Search/>}></Route>
           </Routes>
         </main>
       </HashRouter>

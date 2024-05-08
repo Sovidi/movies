@@ -8,7 +8,7 @@ function Item({item}) {
   const navi = useNavigate();
 
   return (
-    <li onClick={()=>{navi(`/${media}/pop`, {state:{item}})}} className={styles.mGrid}>
+    <li onClick={()=>{navi(`/pop/${media}`, {state:{item}})}} className={styles.mGrid}>
       <code className={styles.title}>{item.original_title}{item.original_name}</code>
       <figure>
         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}/>
