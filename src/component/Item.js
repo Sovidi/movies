@@ -4,11 +4,11 @@ import { MyContext } from '../Context';
 import styles from "../css/contents.module.scss"
 
 function Item({item}) {
-  const {data, fetchFn} = useContext(MyContext);
+  const {data, fetchFn, media} = useContext(MyContext);
   const navi = useNavigate();
 
   return (
-    <li onClick={()=>{navi(`/pop`, {state:{item}})}} className={styles.mGrid}>
+    <li onClick={()=>{navi(`/${media}/pop`, {state:{item}})}} className={styles.mGrid}>
       <code className={styles.title}>{item.original_title}{item.original_name}</code>
       <figure>
         <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}/>

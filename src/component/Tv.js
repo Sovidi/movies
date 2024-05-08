@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 function Tv() {
   const { data, fetchFn, cat, setCat, media, setMedia, setNavBttn, sInp, setSInp, setSDet } = useContext(MyContext);
@@ -11,6 +11,7 @@ function Tv() {
   const bfBttn = useRef();
   const navi = useNavigate();
   let [pNum, setPNum] = useState(1);
+  const {pMedia} = useParams();
 
 
   const searching = async (e) => {
@@ -18,7 +19,7 @@ function Tv() {
     setSInp(elInput.current.value);
     await fetchFn("search", elInput.current.value);
     setSDet(Date.now());
-    navi(`/search`);
+    navi(`/${pMedia}/search`);
   };
 
   useEffect(()=>{
@@ -44,7 +45,7 @@ function Tv() {
   };
 
   useEffect(() => {
-    setMedia("tv");
+    setMedia(pMedia);
     setCat("popular");
     setNum(1);
   }, [])

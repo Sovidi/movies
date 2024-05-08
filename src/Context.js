@@ -39,20 +39,20 @@ function Context({children}) {
             test3: 3
         },
         {				
-            test1: 1,
-            test2: 2,
-            test3: 3
+            test4: 1,
+            test5: 2,
+            test6: 3
         },
         {				
-            test1: 1,
-            test2: 2,
-            test3: 3
+            test7: 1,
+            test8: 2,
+            test9: 3
         }
 		];
 
 		const dTest = () => {
 			const c = a.filter(item=>{
-				return b.some(obj => obj.test2 == item);
+				return b.some(obj => obj.test5 == item);
 			})
 			console.log(c);
 		}
@@ -125,7 +125,7 @@ function Context({children}) {
 
     useEffect(()=>{
         fetchFn("search", "");
-    }, [sNum, sDet])
+    }, [sNum, sDet, media]);
 
     return (
         <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc, sNum, setSSnum, sInp, setSInp, sData, setSData, setSDet}}>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 function List() {
@@ -11,13 +11,14 @@ function List() {
   const elInput = useRef();
   const bfBttn = useRef();
   const navi = useNavigate();
+  const {pMedia} = useParams();
 
   const searching = async (e) => {
     e.preventDefault();
     setSInp(elInput.current.value);
     await fetchFn("search", elInput.current.value);
     setSDet(Date.now());
-    navi(`/search`);
+    navi(`/${pMedia}/search`);
   };
 
   useEffect(()=>{
@@ -38,7 +39,7 @@ function List() {
   };
 
   useEffect(()=>{
-    setMedia("movie");
+    setMedia(pMedia);
     setCat("popular");
     setNum(1);
   }, []);

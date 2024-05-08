@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { MyContext } from '../Context'
 import Item from './Item';
 import styles from "../css/contents.module.scss"
+import { useParams } from 'react-router-dom';
 
 
 function Search() {
-  const {sData, setSData, fetchFn, setNavBttn, sInp, setSInp, setSDet} = useContext(MyContext);
+  const {sData, setSData, fetchFn, setNavBttn, sInp, setSInp, setSDet, setMedia} = useContext(MyContext);
   let {num, setNum, sNum, setSSnum} = useContext(MyContext);
   const elInput = useRef();
   const bfBttn = useRef();
+  const {pMedia} = useParams();
 
   const searching = async (e) => {
     e.preventDefault();
@@ -19,7 +21,11 @@ function Search() {
   };
 
   useEffect(()=>{
-		setNavBttn("");
+    setMedia(pMedia);
+  }, [])
+
+  useEffect(()=>{
+		setNavBttn(pMedia);
 	}, []);
 
   const pagingBefore = (e) => {

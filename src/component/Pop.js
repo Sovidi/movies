@@ -8,15 +8,22 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 import pPic from "../asset/person.png"
+import moviePic from "../asset/movie.png"
 
 
 function Pop() {
-  const { data, fetchFn, mId, setMId, media } = useContext(MyContext);
+  const { data, fetchFn, mId, setMId, media, setMedia, setNavBttn } = useContext(MyContext);
   const [dt, setDt] = useState([]);
   const location = useLocation();
   const [items, setItems] = useState([]);
   const LItems = location.state.item;
   const navi = useNavigate();
+  const {pMedia} = useParams();
+
+  useEffect(()=>{
+    setMedia(pMedia);
+    setNavBttn(pMedia);
+  }, []);
 
   useEffect(()=>{
     setItems(LItems);
@@ -48,17 +55,17 @@ function Pop() {
 
   const dtLd = async () => {
     const dataSet = [
-      await instance.get(`/${media}/${items.length ? items.id : LItems.id}`),
-      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/credits`),
-      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/videos`),
-      await instance.get(`/${media}/${items.length ? items.id : LItems.id}/similar`),
+      await instance.get(`/${pMedia}/${items.length ? items.id : LItems.id}`),
+      await instance.get(`/${pMedia}/${items.length ? items.id : LItems.id}/credits`),
+      await instance.get(`/${pMedia}/${items.length ? items.id : LItems.id}/videos`),
+      await instance.get(`/${pMedia}/${items.length ? items.id : LItems.id}/similar`),
     ]
     setDt(dataSet);
     console.log(dataSet);
   };
 
   useEffect(() => {
-    dtLd()
+    dtLd();
   }, [media, LItems]);
 
   useEffect(() => {
@@ -73,7 +80,7 @@ function Pop() {
       <div className={styles.titleBox}>
         <div className={styles.titlePosterBox}>
           <figure>
-            <img src={`https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}`} />
+            <img src={`${dt[0].data.poster_path ? `https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}` : moviePic}`} />
           </figure>
         </div>
         <div className={styles.infoBox}>
@@ -132,9 +139,9 @@ function Pop() {
           {
             dt[3].data.results.map(item => (
                 <SwiperSlide>
-                  <figure onClick={()=>{navi(`/pop`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
+                  <figure onClick={()=>{navi(`/${pMedia}/pop`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
                     <figcaption>{item.title}{item.name}</figcaption>
-                    <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} />
+                    <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : moviePic}`} />
                   </figure>
                 </SwiperSlide>
             ))
