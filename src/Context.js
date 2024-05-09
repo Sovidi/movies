@@ -5,133 +5,102 @@ import axios from "axios";
 const MyContext = createContext();
 
 const insert = (state, action) => {
-    switch(action.type) {
-        case "search" : return action.d;
-        case "get" : return action.d;
-        case "more" : return [...state, ...action.d];
-        default : return action.d;
-    }
+	switch (action.type) {
+		case "search": return [...action.d];
+		case "get": return [...action.d];
+		case "more": return [...state, ...action.d];
+		default: return [...action.d];
+	}
 }
 
-function Context({children}) {
-    const [data, dispatch] = useReducer(insert, []);
-    const [sData, setSData] = useState([]);
-    const [media, setMedia] = useState("movie");
-    const [cat, setCat] = useState("popular");
-    const [num, setNum] = useState(1);
-    const [sNum, setSSnum] = useState(1);
-    const [sec, setSec] = useState([]);
-    const [navBttn, setNavBttn] = useState("");
-    const [navSc, setNavSc] = useState("up");
-    const [sInp, setSInp] = useState("");
-    const [sDet, setSDet] = useState([]);
+function Context({ children }) {
+	const [data, dispatch] = useReducer(insert, []);
+	const [sData, setSData] = useState([]);
+	const [media, setMedia] = useState("movie");
+	const [cat, setCat] = useState("popular");
+	const [num, setNum] = useState(1);
+	const [sNum, setSSnum] = useState(1);
+	const [sec, setSec] = useState([]);
+	const [navBttn, setNavBttn] = useState("");
+	const [navSc, setNavSc] = useState("up");
+	const [sInp, setSInp] = useState("");
+	const [sDet, setSDet] = useState([]);
 
-    const instance = axios.create({
-        baseURL: "https://api.themoviedb.org/3",
-        params: {api_key: "f89a6c1f22aca3858a4ae7aef10de967"}
-    });
+	const instance = axios.create({
+		baseURL: "https://api.themoviedb.org/3",
+		params: { api_key: "f89a6c1f22aca3858a4ae7aef10de967" }
+	});
 
-    const a = [1, 2, 3, 4, 5];
-    const b = [
-        {
-            test1: 1,
-            test2: 2,
-            test3: 3
-        },
-        {				
-            test4: 1,
-            test5: 2,
-            test6: 3
-        },
-        {				
-            test7: 1,
-            test8: 2,
-            test9: 3
-        }
+	const forMain = async () => {
+		let res;
+		const mainMvList = [
+			await instance.get(`/movie/popular`),
+			await instance.get(`/movie/top_rated`),
+			await instance.get(`/tv/popular`),
+			await instance.get(`/tv/top_rated`)
 		];
+		setSec(mainMvList);
+	};
 
-		const dTest = () => {
-			const c = a.filter(item=>{
-				return b.some(obj => obj.test5 == item);
-			})
-			console.log(c);
+	const fetchFn = async (type, data) => {
+		let res;
+		switch (type) {
+			case "search":
+				res = await instance.get(`/search/${media}?query=${sInp}&page=${sNum}`);
+				res = res.data.results;
+				setSData(res);
+				break;
+
+			case "get":
+				res = await instance.get(`/${media}/${cat}?page=${num}`);
+				res = res.data.results;
+				dispatch({ type, d: res });
+				break;
+
+			case "more":
+				res = await instance.get(`/${media}/${cat}?page=${data}`);
+				res = res.data.results;
+				dispatch({ type, d: res });
+				break;
+
+			default:
+				res = await instance.get(`/${media}/${cat}?page=${num}`);
+				res = res.data.results;
+				dispatch({ type, d: res });
+		};
+	};
+
+	function handleScroll() {
+		const scrollY = window.scrollY || window.pageYOffset;
+		if (scrollY == 0) {
+			setNavSc("up");
+		} else {
+			setNavSc("down");
 		}
+	}
 
-		useEffect(()=>{
-			dTest();
-		}, [])
+	useEffect(() => {
+		forMain();
+		fetchFn();
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
-    const forMain = async () => {
-        let res;
-        const mainMvList = [
-            await instance.get(`/movie/popular`),
-            await instance.get(`/movie/top_rated`),
-            await instance.get(`/tv/popular`),
-            await instance.get(`/tv/top_rated`)
-        ];
-        setSec(mainMvList);
-    };
+	useEffect(() => {
+		fetchFn();
+	}, [num, media, cat]);
 
+	useEffect(() => {
+		fetchFn("search", "");
+	}, [sNum, sDet, media]);
 
-    const fetchFn = async (type, data) => {
-        let res;
-        switch(type) {
-            case "search" : 
-            res = await instance.get(`/search/${media}?query=${sInp}&page=${sNum}`);
-            res = res.data.results;
-            setSData(res);
-            break;
-
-            case "get" :
-            res = await instance.get(`/${media}/${cat}?page=${num}`);
-            res = res.data.results;
-            dispatch({type, d: res});
-            break;
-
-            case "more" :
-            res = await instance.get(`/${media}/${cat}?page=${data}`);
-            res = res.data.results;
-            dispatch({type, d: res});
-            break;
-    
-            default :
-            res = await instance.get(`/${media}/${cat}?page=${num}`);
-            res = res.data.results;
-            dispatch({type, d: res});
-            };
-    };
-
-    function handleScroll() {
-        const scrollY = window.scrollY || window.pageYOffset;
-        if (scrollY == 0) {
-            setNavSc("up");
-        } else {
-            setNavSc("down");
-        }
-    }
-
-    useEffect(()=> {
-        forMain();
-        fetchFn();
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
-    useEffect(()=>{
-        fetchFn();
-    }, [num, media, cat]);
-
-    useEffect(()=>{
-        fetchFn("search", "");
-    }, [sNum, sDet, media]);
-
-    return (
-        <MyContext.Provider value={{data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc, sNum, setSSnum, sInp, setSInp, sData, setSData, setSDet}}>
-            {children}
-        </MyContext.Provider>
-    )
+	return (
+		<MyContext.Provider value={{ data, fetchFn, num, setNum, cat, setCat, media, setMedia, sec, setSec, navBttn, setNavBttn, navSc, sNum, setSSnum, sInp, setSInp, sData, setSData, setSDet }}>
+			{children}
+		</MyContext.Provider>
+	)
 }
 
-export {Context, MyContext}
+export { Context, MyContext }

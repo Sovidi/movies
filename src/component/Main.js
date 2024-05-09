@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function Main() {
 	const { sec, setNavBttn } = useContext(MyContext);
 	const navi = useNavigate();
+	const [mEvent, setMEvent] = useState("");
 
 	const params = {
 		spaceBetween: 30,
@@ -19,9 +20,9 @@ function Main() {
 		onSlideChange: () => console.log('slide change'),
 		onSwiper: (swiper) => console.log(swiper),
 		breakpoints: {
-			380: {slidesPerView: 1},
-			800: {slidesPerView: 2},
-			1000: {slidesPerView: 3}
+			380: {slidesPerView: 2},
+			800: {slidesPerView: 3},
+			1000: {slidesPerView: 5}
 		}
 	}
 
@@ -38,7 +39,7 @@ function Main() {
 				{...params}
 			>
 				{
-					sec[0].data.results.map(item => (
+					sec[0].data.results.map((item, key) => (
 						<SwiperSlide>
 							<figure onClick={()=>{navi(`/pop/movie`, {state:{item}})}}>
 								<figcaption>{item.original_title}{item.original_name}</figcaption>

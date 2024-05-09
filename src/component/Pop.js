@@ -132,7 +132,7 @@ function Pop() {
         </div>
       </div>
       <div className={styles.similarBox}>
-        <p className={styles.title}>비슷한 영화</p>
+        <p className={styles.title}>비슷한 작품</p>
         <Swiper
           {...params}
         >

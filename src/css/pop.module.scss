@@ -152,6 +152,7 @@
             align-items: center;
             height: 600px;
             >.simContent{
+              cursor: pointer;
               transition: 0.8s;
               width: 80%;
               &:hover{
