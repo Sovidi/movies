@@ -12,7 +12,7 @@ import Search from './component/Search';
 function App() {
   return (
     <Context>
-      <BrowserRouter basename='movies'>
+      <BrowserRouter>
         <Header/>
         <main>
           <Routes>
