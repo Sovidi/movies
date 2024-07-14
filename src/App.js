@@ -12,7 +12,7 @@ import Search from './component/Search';
 function App() {
   return (
     <Context>
-      <BrowserRouter basename='movies'>
+      <HashRouter basename='movies'>
         <Header/>
         <main>
           <Routes>
@@ -23,7 +23,7 @@ function App() {
             <Route path='/search/:pMedia' element={<Search/>}/>
           </Routes>
         </main>
-      </BrowserRouter>
+      </HashRouter>
     </Context>
   );
 }
