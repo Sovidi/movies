@@ -12,7 +12,7 @@ import Search from './component/Search';
 function App() {
   return (
     <Context>
-      <HashRouter basename='movies'>
+      <HashRouter>
         <Header/>
         <main>
           <Routes>
