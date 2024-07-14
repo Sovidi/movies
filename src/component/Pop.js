@@ -80,7 +80,7 @@ function Pop() {
       <div className={styles.titleBox}>
         <div className={styles.titlePosterBox}>
           <figure>
-            <img src={`${dt[0].data.poster_path ? `https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}` : moviePic}`} />
+            <img src={`${dt[0].data.poster_path ? `https://image.tmdb.org/t/p/w500/${dt[0].data.poster_path}` : "./movie.png"}`} />
           </figure>
         </div>
         <div className={styles.infoBox}>
@@ -111,7 +111,7 @@ function Pop() {
         {
           dt[1].data.cast.map(item => (
             <figure className={styles.castPic}>
-              <img src={`${item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : pPic}`} />
+              <img src={`${item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : "./person.png"}`} />
               <figcaption>{item.name}</figcaption>
             </figure>
           ))
@@ -141,7 +141,7 @@ function Pop() {
                 <SwiperSlide>
                   <figure onClick={()=>{navi(`/pop/${pMedia}`, {state:{item}}); window.scrollTo(0, 0)}} className={styles.simContent}>
                     <figcaption>{item.title}{item.name}</figcaption>
-                    <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : moviePic}`} />
+                    <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : "./movie.png"}`} />
                   </figure>
                 </SwiperSlide>
             ))

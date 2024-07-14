@@ -12,7 +12,7 @@ function Item({item}) {
     <li onClick={()=>{navi(`/pop/${media}`, {state:{item}})}} className={styles.mGrid}>
       <code className={styles.title}>{item.original_title}{item.original_name}</code>
       <figure>
-        <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : cPoster}`}/>
+        <img src={`${item.poster_path ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` : "./movie.png"}`}/>
       </figure>
       {/* <Link to={`/pop/${item.id}`}>자세히 보기</Link> */}
     </li>
